@@ -3,7 +3,6 @@ package com.neuedu.com;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Test2 {
@@ -23,10 +22,9 @@ public class Test2 {
 			con = DriverManager.getConnection(url,user,password);
 			//3.创建命令窗口 写sql语句
 			//3.1 写sql语句 禁用字符拼接 不安全
-			pstmt = con.prepareStatement("insert into student(name,b_id)values(?,?)");
+			pstmt = con.prepareStatement("delete from student where name=?");
 			//注入参数
 			pstmt.setString(1, "px");
-			pstmt.setInt(2, 10);
 			//4.运行sql语句并查看结果 如果是增删改 返回受影响的行数 如果是查询返回的是查询结果
 			//4.1运行的时候 如果是增删改则调用executeUpdate 返回int(代表的是受影响的行数) 如果是查询 则调用executeQuery 返回ResultSet(结果的集合)
 			
